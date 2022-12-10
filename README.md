@@ -58,11 +58,33 @@ result:
 {"mollysocket":{"version":"0.1.0"}}
 ```
 
+### Monitoring
+
+Works well with [Prometheus Operator](https://prometheus-operator.dev/) ([Helmchart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack)) by enabling following values:
+
+```yaml
+prometheus:
+  servicemonitor:
+    enabled: true
+    labels:
+      release: "kube-prometheus-stack"
+  rules:
+    enabled: true # will deploy alert rules
+    additionalLabels:
+      release: "kube-prometheus-stack"
+```
+
+PS: The labels `release=kube-prometheus-stack` is setup with the helmchart of the Prometheus Operator.
+
+PSS: Not yet supported in regulary mollysocket image, see:
+https://github.com/MollySocket/mollysocket/issues/3
+
+
 ## TODO
 - Working with [Prometheus Operator](https://prometheus-operator.dev/) ([Helmchart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack))
   - Waiting for Metric Support of MollySocket: https://github.com/MollySocket/mollysocket/issues/3
-  - [ ] ServiceMonitor to scrape metrics
-  - [ ] default set of PrometheusRules for Alerting on unespected behavour
+  - [x] ServiceMonitor to scrape metrics
+  - [x] default set of PrometheusRules for Alerting on unespected behavour
   - [ ] deploy [Grafana](https://grafana.com/grafana/)-Dashboards
 
 - Working with [Banzai Logging Operator](https://banzaicloud.com/docs/one-eye/logging-operator/)
