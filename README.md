@@ -7,13 +7,6 @@ for all options see default values.yaml from the chart: [/charts/mollysocket/val
 
 ```yaml
 
-image:
-  ## if the image under same tag is updated
-  pullPolicy: Always
-  ## There is not yet an version tagged container image (just latest):
-  ## https://github.com/MollySocket/mollysocket/pkgs/container/mollysocket/versions?filters%5Bversion_type%5D=tagged
-  tag: "latest"
-
 mollysocket:
   log: "warn"
 
@@ -58,12 +51,39 @@ result:
 {"mollysocket":{"version":"0.1.0"}}
 ```
 
+### Monitoring
+
+Works well with [Prometheus Operator](https://prometheus-operator.dev/) ([Helmchart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack)) by enabling following values:
+
+```yaml
+prometheus:
+  servicemonitor:
+    enabled: true
+    labels:
+      release: "kube-prometheus-stack"
+  rules:
+    # will deploy alert rules
+    enabled: true
+    labels:
+      release: "kube-prometheus-stack"
+    # current no default alertrules are provided, here a few additiona examples:
+    additionalRules:
+      # alert if any message is recieved (and pushed)
+      - alert: "MollyMessage"
+        expr: 'increase(mollysocket_messages[5m]) > 0'
+        labels: 
+          severity: "critical"
+        annotations:
+          summary: "Got New Message for {{ $labels.uuid }}"
+          description: "Got New Message for {{ $labels.uuid }} per {{ $labels.type }} count: {{ $value }}"
+grafana:
+  dashboards:
+    enabled: true
+```
+
+PS: The labels `release=kube-prometheus-stack` is setup with the helmchart of the Prometheus Operator.
+
 ## TODO
-- Working with [Prometheus Operator](https://prometheus-operator.dev/) ([Helmchart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack))
-  - Waiting for Metric Support of MollySocket: https://github.com/MollySocket/mollysocket/issues/3
-  - [ ] ServiceMonitor to scrape metrics
-  - [ ] default set of PrometheusRules for Alerting on unespected behavour
-  - [ ] deploy [Grafana](https://grafana.com/grafana/)-Dashboards
 
 - Working with [Banzai Logging Operator](https://banzaicloud.com/docs/one-eye/logging-operator/)
   - Waiting for Serizable-Log Support for MollySocket: https://github.com/MollySocket/mollysocket/issues/5
