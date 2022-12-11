@@ -51,12 +51,14 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
+            - name: "RUST_LOG"
+              value: "{{ .Values.mollysocket.log }}"
             - name: "ROCKET_ADDRESS"
               value: "0.0.0.0"
             - name: "ROCKET_PORT"
               value: "{{ .Values.service.port }}"
-            - name: "RUST_LOG"
-              value: "{{ .Values.mollysocket.log }}"
+            - name: "ROCKET_PROMETHEUS_NAMESPACE"
+              value: "mollysocket"
             - name: "MOLLY_CONF"
               value: "/config/molly.toml"
           volumeMounts:

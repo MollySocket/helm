@@ -49,6 +49,14 @@ persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
 
+prometheus:
+  servicemonitor:
+    enabled: false
+    labels: {}
+  rules:
+    enabled: false
+    labels: {}
+    additionalRules: []
   
 
 serviceAccount:

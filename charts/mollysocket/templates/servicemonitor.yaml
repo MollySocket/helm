@@ -1,0 +1,16 @@
+{{- if and (.Values.prometheus.servicemonitor.enabled) ( .Capabilities.APIVersions.Has "monitoring.coreos.com/v1" ) }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "mollysocket.fullname" . }}
+  labels:
+    {{- include "mollysocket.labels" . | nindent 4 }}
+    {{- toYaml .Values.prometheus.servicemonitor.labels | nindent 4 }}
+spec:
+  endpoints:
+    - port: http
+      path: /metrics
+  selector:
+    matchLabels:
+      {{- include "mollysocket.selectorLabels" . | nindent 6 }}
+{{- end }}
