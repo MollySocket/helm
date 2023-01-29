@@ -64,6 +64,7 @@ grafana:
     enabled: false
     labels:
       grafana_dashboard: "1"
+    annotations: {}
 
 serviceAccount:
   # Specifies whether a service account should be created

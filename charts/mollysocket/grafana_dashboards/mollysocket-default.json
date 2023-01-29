@@ -84,7 +84,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "mollysocket_connections",
+          "expr": "sum(mollysocket_connections)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -145,7 +145,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "mollysocket_reconnections",
+          "expr": "sum(mollysocket_reconnections)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -569,7 +569,7 @@
           },
           "editorMode": "code",
           "expr": "irate(mollysocket_pushs[$__interval])",
-          "hide": true,
+          "hide": false,
           "legendFormat": "{{ namespace }}/{{ pod }}/{{ type }}",
           "range": true,
           "refId": "A"

@@ -81,6 +81,8 @@ grafana:
     enabled: true
 ```
 
+![Grafana Dashboard of MollySocket](charts/mollysocket/docs/grafana-mollysocket-default.png)
+
 PS: The labels `release=kube-prometheus-stack` is setup with the helmchart of the Prometheus Operator.
 
 ## TODO
