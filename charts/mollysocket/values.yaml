@@ -49,7 +49,21 @@ persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
 
+prometheus:
+  servicemonitor:
+    enabled: false
+    labels: {}
+  rules:
+    enabled: false
+    labels: {}
+    # current no default alertrules are provided
+    additionalRules: []
   
+grafana:
+  dashboards:
+    enabled: false
+    labels:
+      grafana_dashboard: "1"
 
 serviceAccount:
   # Specifies whether a service account should be created
