@@ -9,7 +9,7 @@ metadata:
 spec:
   groups:
   {{- if .Values.prometheus.rules.additionalRules }}
-  - name: {{ template "mollysocket.name" . }}-Additional
+  - name: {{ template "mollysocket.fullname" . }}-Additional
     rules: {{- toYaml .Values.prometheus.rules.additionalRules | nindent 4 }}
   {{- end }}
 {{- end }}
