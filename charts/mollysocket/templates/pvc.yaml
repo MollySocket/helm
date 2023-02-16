@@ -44,4 +44,7 @@ spec:
   storageClassName: "{{ .Values.persistence.storageClass }}"
   {{- end }}
   {{- end }}
+  {{- if .Values.persistence.hostPath }}
+  volumeName: {{ template "mollysocket.fullname" . }}
+  {{- end }}
 {{- end -}}
