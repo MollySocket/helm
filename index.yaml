@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   mollysocket:
   - apiVersion: v2
+    appVersion: 0.2.2
+    created: "2023-02-16T08:39:56.598731532Z"
+    description: Deploy MollySocket into Kubernetes
+    digest: 8141112f5e2994ab0616adf3783eb34f36d5bfa231015e900fac77f41673b324
+    name: mollysocket
+    type: application
+    urls:
+    - https://github.com/MollySocket/helm/releases/download/mollysocket-0.2.3/mollysocket-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
     appVersion: 0.2.1
     created: "2023-01-30T07:42:14.913890303Z"
     description: Deploy MollySocket into Kubernetes
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/MollySocket/helm/releases/download/mollysocket-0.1.0/mollysocket-0.1.0.tgz
     version: 0.1.0
-generated: "2023-01-30T07:42:14.913907703Z"
+generated: "2023-02-16T08:39:56.598787833Z"
