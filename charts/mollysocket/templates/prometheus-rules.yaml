@@ -5,7 +5,9 @@ metadata:
   name: {{ include "mollysocket.fullname" . }}
   labels:
     {{- include "mollysocket.labels" . | nindent 4 }}
-    {{- toYaml .Values.prometheus.rules.labels | nindent 4 }}
+    {{- with .Values.prometheus.rules.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   {{- if .Values.prometheus.rules.additionalRules }}
