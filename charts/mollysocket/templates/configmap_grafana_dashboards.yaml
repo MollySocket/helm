@@ -7,7 +7,9 @@ metadata:
   name: {{ include "mollysocket.fullname" $ }}-grafana-dashboards-{{ base $path }}
   labels:
     {{- include "mollysocket.labels" $ | nindent 4 }}
-    {{- toYaml $.Values.grafana.dashboards.labels | nindent 4 }}
+    {{- with $.Values.grafana.dashboards.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   annotations:
     {{- toYaml $.Values.grafana.dashboards.annotations | nindent 4 }}
 data:
