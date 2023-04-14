@@ -4,9 +4,9 @@ name: mollysocket
 description: Deploy MollySocket into Kubernetes
 
 
-version: 0.2.6
+version: 0.2.7
 
-appVersion: "0.2.2"
+appVersion: "0.2.3"
 
 home: "https://molly.im/"
 icon: "https://avatars.githubusercontent.com/u/58849401?s=200&v=4"
